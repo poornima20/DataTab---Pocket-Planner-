@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pocket Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="grid">
+
+
+  <!-- FIXED PAPER TOGGLE -->
+  <div class="paper-toggle fixed">
+    <div class="track">
+
+      <button data-mode="grid" class="active" aria-label="Grid paper">
+        <i data-lucide="grid-2x2"></i>
+      </button>
+      
+      <button data-mode="dotted" aria-label="Dotted paper">
+        <i data-lucide="grip"></i>
+      </button>
+      
+      <button data-mode="plain" aria-label="Plain paper">
+        <i data-lucide="square"></i>
+      </button>
+
+      <div class="thumb"></div>
+    </div>
+  </div>
+
+<header class="top">
+  <h1 class="brand-title">Pocket Plan</h1>
+
+  <div class="planner-name-wrapper"> <span id="plannerNameDisplay" class="planner-name">
+      Your Planner Name
+    </span>
+
+    <input
+      type="text"
+      id="plannerNameInput"
+      class="planner-name-input hidden"
+      placeholder="Name your planner…"
+      maxlength="40"
+    />
+  </div>
+</header>
+
+
+
+ <main class="landing">
+
+  <p class="subtitle">Your quiet space to plan, think, and manage time.</p>
+
+  <!-- PLANNER CATEGORIES -->
+  <div class="planner-categories">
+    <button class="planner-card" data-planner="daily">
+      <i data-lucide="sun"></i>
+      <span>Daily Planner</span>
+    </button>
+
+    <button class="planner-card" data-planner="weekly">
+      <i data-lucide="calendar"></i>
+      <span>Weekly Planner</span>
+    </button>
+
+    <button class="planner-card" data-planner="goals">
+      <i data-lucide="target"></i>
+      <span>Goals</span>
+    </button>
+
+    <button class="planner-card" data-planner="notes">
+      <i data-lucide="edit-3"></i>
+      <span>Notes</span>
+    </button>
+  </div>
+</main>
+
+<!-- FULL SCREEN PLANNER MODAL -->
+<div class="planner-modal hidden" id="plannerModal">
+  <header class="modal-header">
+    <h2 id="plannerTitle">Planner</h2>
+  </header>
+
+  <section class="modal-body">
+    <div class="page-carousel-wrapper">
+  <div class="page-carousel">
+
+    
+  </div>
+</div>
+
+  </section>
+
+  <footer class="modal-footer">
+    <button class="ghost" id="openProfileFromModal">Profile</button>
+    <button class="primary" id="closeModal">Back to Planner</button>
+  </footer>
+</div>
+
+<!-- Floating Profile Button -->
+<button class="profile-fab" id="openProfile" aria-label="Open profile">
+  <i data-lucide="user"></i>
+</button>
+
+<!-- PROFILE PAGE -->
+<!-- PROFILE PAGE -->
+<div class="profile-page" id="profilePage">
+
+  <!-- Header -->
+  <div class="profile-header">
+    <span class="profile-hint">Your Planner</span>
+    <h2 id="profilePlannerName">Untitled Planner</h2>
+  </div>
+
+  <!-- Sticky Tray -->
+<div class="planner-tray fixed">
+  <button id="plannerHome">
+    <i data-lucide="home"></i>
+    <span>Home</span>
+  </button>
+
+  <button id="plannerPages">
+    <i data-lucide="book-open"></i>
+    <span>Pages</span>
+  </button>
+
+</div>
+
+<!-- PAGES OVERLAY -->
+<div id="pagesOverlay" class="planner-overlay hidden">
+  <!-- PAGES MANAGER -->
+<section class="pages-manager">
+  <h3 class="pages-title">Planner Pages</h3>
+
+  <div class="pages-list">
+    <!-- JS will inject .page-card-mini here -->
+  </div>
+
+  <button class="pages-done">Done</button>
+</section>
+
+</div>
+
+
+  <!-- NORMAL PLANNER VIEW -->
+  <div class="profile-body">
+    <div id="plannerCanvas"></div>
+  </div>
+
+</div>
+
+  <script src="script.js"></script>
+  <script>lucide.createIcons();</script>
+</body>  
+</html>
