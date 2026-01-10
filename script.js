@@ -44,7 +44,7 @@ const PAGE_LIBRARY = {
 
 
 const CATEGORY_PAGES = {
-  daily: [ "datatabPlanner", "Habbit" ],
+  daily: [ "focusgrid", "datatabPlanner", "Habbit" ],
 
   weekly: ["calendarTab" ],
 
