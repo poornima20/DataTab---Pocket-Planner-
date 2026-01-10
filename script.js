@@ -49,6 +49,11 @@ const CATEGORY_PAGES = {
 };
 
 
+function goHome() {
+  modal.classList.add("hidden");
+  profilePage.classList.remove("active", "pages-open");
+  pagesOverlay.classList.remove("active");
+}
 
 
 
@@ -56,11 +61,8 @@ buttons.forEach((btn, index) => {
   btn.addEventListener("click", () => {
     document.body.classList.remove(...modes);
     document.body.classList.add(btn.dataset.mode);
-
     buttons.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-
-    // 30px button + 4px gap = 34px
     thumb.style.transform = `translateX(${index * 34}px)`;
   });
 });
@@ -126,15 +128,17 @@ card.innerHTML = `
 }
 
 
-
 plannerButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     const key = btn.dataset.planner;
     title.textContent = btn.innerText;
     renderModalPages(key);
+
+    history.pushState({ open: true }, "");
     modal.classList.remove("hidden");
   });
 });
+
 
 
 
@@ -202,13 +206,12 @@ const openProfileBtn = document.getElementById("openProfile");
 const openProfileFromModal = document.getElementById("openProfileFromModal");
 
 function openProfile() {
+  history.pushState({ open: true }, "");
   modal.classList.add("hidden");
   profilePage.classList.add("active");
-
   renderPlannerPages();
-
-
 }
+
 
 
 openProfileBtn.addEventListener("click", openProfile);
@@ -283,6 +286,8 @@ function renderPlannerPages() {
     container.appendChild(wrapper);
   });
 
+  setupPageCounterObserver(); 
+
 }
 
 
@@ -292,6 +297,7 @@ const pagesDoneBtn = document.querySelector(".pages-done");
 
 // Open Pages
 document.getElementById("plannerPages").onclick = () => {
+  history.pushState({ open: true }, "");
   profilePage.classList.add("pages-open");
   pagesOverlay.classList.add("active");
   renderPagesList();
@@ -304,6 +310,9 @@ pagesDoneBtn.onclick = () => {
 };
 
 
+window.addEventListener("popstate", () => {
+  goHome();
+});
 
 
 document.getElementById("plannerHome").onclick = () => {
@@ -311,6 +320,13 @@ document.getElementById("plannerHome").onclick = () => {
 };
 
 
+closeModal.addEventListener("click", () => {
+  history.back();
+});
+
+
+
+document.getElementById("plannerHome").onclick = () => history.back();
 
 
 function renderPagesList() {
@@ -325,21 +341,28 @@ function renderPagesList() {
     card.draggable = true;
     card.dataset.index = index;
 
-    card.innerHTML = `
-      <div class="mini-preview">
-        <img src="${getPreviewByUrl(page.url)}" />
-      </div>
+card.innerHTML = `
+  <div class="mini-preview">
+    <img src="${getPreviewByUrl(page.url)}" />
+  </div>
 
-      <div class="mini-title">${page.title}</div>
+  <div class="mini-title">
+    <span class="title-text">${page.customTitle || page.title}</span>
+   
+    <input class="title-input hidden" type="text" />
+  </div>
 
-      <div class="mini-actions">
-        <button data-action="move"><i data-lucide="move"></i></button>
-<button data-action="duplicate"><i data-lucide="copy"></i></button>
-<button data-action="delete"><i data-lucide="trash-2"></i></button>
-<button data-action="refresh"><i data-lucide="refresh-cw"></i></button>
+<div class="mini-actions">
+  <button class="drag-handle" data-action="move"><i data-lucide="grip-vertical"></i></button>
+  <button data-action="edit"><i data-lucide="pencil"></i></button>
+  <button data-action="duplicate"><i data-lucide="copy"></i></button>
+  <button data-action="delete"><i data-lucide="trash-2"></i></button>
+  <button data-action="refresh"><i data-lucide="refresh-cw"></i></button>
+</div>
 
-      </div>
-    `;
+`;
+
+
 
     list.appendChild(card);
     lucide.createIcons();
@@ -348,34 +371,87 @@ function renderPagesList() {
 }
 
 
-document.querySelector(".pages-list").onclick = e => {
-  const btn = e.target;
-  const card = btn.closest(".page-card-mini");
+document.querySelector(".pages-list").addEventListener("click", e => {
+  const card = e.target.closest(".page-card-mini");
   if (!card) return;
 
-  const index = Number(card.dataset.index);
-  const pages = getSavedPages();
+  const actionBtn = e.target.closest("button[data-action]");
+  if (!actionBtn) return;
 
-  if (btn.dataset.action === "delete") {
+  const action = actionBtn.dataset.action;
+  const pages = getSavedPages();
+  const index = Number(card.dataset.index);
+
+  if (action === "edit") {
+    startRename(card, index);
+    return;
+  }
+
+
+  if (action === "delete") {
     pages.splice(index, 1);
   }
 
-  if (btn.dataset.action === "duplicate") {
-    pages.splice(index + 1, 0, {
-      ...pages[index],
-      id: crypto.randomUUID()
-    });
-  }
+  if (action === "duplicate") {
+  const original = pages[index];
+  pages.splice(index + 1, 0, {
+    ...original,
+    id: crypto.randomUUID()
+  });
+}
 
-  if (btn.dataset.action === "refresh") {
+
+  if (action === "refresh") {
     renderPlannerPages();
     return;
   }
 
+
   localStorage.setItem("plannerPages", JSON.stringify(pages));
   renderPagesList();
   renderPlannerPages();
-};
+});
+
+
+function startRename(card, index) {
+  const text = card.querySelector(".title-text");
+  const input = card.querySelector(".title-input");
+
+  const pages = getSavedPages();
+  const page = pages[index];
+
+  input.value = page.customTitle || page.title;
+  text.classList.add("hidden");
+  input.classList.remove("hidden");
+  input.focus();
+  input.select();
+
+  input.onblur = save;
+  input.onkeydown = e => {
+    if (e.key === "Enter") input.blur();
+    if (e.key === "Escape") cancel();
+  };
+
+  function save() {
+    const value = input.value.trim();
+    if (value) page.customTitle = value;
+    else delete page.customTitle;
+
+    localStorage.setItem("plannerPages", JSON.stringify(pages));
+    renderPagesList();
+    renderPlannerPages();
+  }
+
+  function cancel() {
+    input.classList.add("hidden");
+    text.classList.remove("hidden");
+  }
+}
+
+
+
+
+
 
 
 
@@ -386,36 +462,6 @@ function getPreviewByUrl(url) {
   return entry?.previewImage || "./previews/default.png";
 }
 
-let dragIndex = null;
-
-document.querySelector(".pages-list").addEventListener("dragstart", e => {
-  const item = e.target.closest(".page-item");
-  if (!item) return;
-
-  dragIndex = Number(item.dataset.index);
-});
-
-document.querySelector(".pages-list").addEventListener("dragover", e => {
-  e.preventDefault();
-});
-
-document.querySelector(".pages-list").addEventListener("drop", e => {
-  const target = e.target.closest(".page-item");
-  if (!target || dragIndex === null) return;
-
-  const pages = getSavedPages();
-  const from = dragIndex;
-  const to = Number(target.dataset.index);
-
-  const [moved] = pages.splice(from, 1);
-  pages.splice(to, 0, moved);
-
-  localStorage.setItem("plannerPages", JSON.stringify(pages));
-  dragIndex = null;
-
-  renderPagesList();
-  renderPlannerPages();
-});
 
 let snapEnabled = false;
 
@@ -428,27 +474,88 @@ profilePage.addEventListener("scroll", () => {
 
 
 
-document.querySelector(".pages-list").addEventListener("click", e => {
-  const btn = e.target;
-  const card = btn.closest(".page-card-mini");
+let dragIndex = null;
+
+document.querySelector(".pages-list").addEventListener("dragstart", e => {
+  const card = e.target.closest(".page-card-mini");
   if (!card) return;
+  dragIndex = Number(card.dataset.index);
+});
 
-  const index = Number(card.dataset.index);
+document.querySelector(".pages-list").addEventListener("dragover", e => {
+  e.preventDefault(); // 🔑 REQUIRED
+});
+
+document.querySelector(".pages-list").addEventListener("drop", e => {
+  const target = e.target.closest(".page-card-mini");
+  if (!target || dragIndex === null) return;
+
   const pages = getSavedPages();
+  const to = Number(target.dataset.index);
 
-  if (btn.dataset.action === "delete") {
-    pages.splice(index, 1);
-  }
-
-  if (btn.dataset.action === "duplicate") {
-    pages.splice(index + 1, 0, { ...pages[index], id: crypto.randomUUID() });
-  }
-
-  if (btn.dataset.action === "refresh") {
-    renderPlannerPages();
-  }
+  const [moved] = pages.splice(dragIndex, 1);
+  pages.splice(to, 0, moved);
 
   localStorage.setItem("plannerPages", JSON.stringify(pages));
+  dragIndex = null;
+
   renderPagesList();
   renderPlannerPages();
 });
+
+const pageCounter = document.getElementById("pageCounter");
+
+function updatePageCounter() {
+  const pages = document.querySelectorAll(".planner-page-wrapper");
+  const total = pages.length;
+
+  if (!total) {
+    pageCounter.textContent = "0 / 0";
+    return;
+  }
+
+  const scrollTop = plannerCanvas.scrollTop;
+  const pageHeight = pages[0].offsetHeight;
+
+  const current = Math.round(scrollTop / pageHeight) + 1;
+
+  pageCounter.textContent = `${current} / ${total}`;
+}
+
+let pageObserver = null;
+
+function setupPageCounterObserver() {
+  if (pageObserver) pageObserver.disconnect();
+
+  const wrappers = document.querySelectorAll(".planner-page-wrapper");
+  const pages = getSavedPages();
+  const total = wrappers.length;
+
+  if (!total) {
+    pageCounter.textContent = "";
+    return;
+  }
+
+  // Initial value
+  pageCounter.textContent = `1 / ${total} · ${pages[0].customTitle || pages[0].title}`;
+
+  pageObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = Number(entry.target.dataset.index);
+          const page = pages[index];
+
+          const name = page.customTitle || page.title;
+          pageCounter.textContent = `${index + 1} / ${total} · ${name}`;
+        }
+      });
+    },
+    {
+      threshold: 0.6
+    }
+  );
+
+  wrappers.forEach(w => pageObserver.observe(w));
+}
+
