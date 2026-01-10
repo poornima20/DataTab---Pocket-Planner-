@@ -33,6 +33,11 @@ const PAGE_LIBRARY = {
     title: "Habit Tracker",
     url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
     previewImage: "./previews/habit.png"
+  },
+  focusgrid: {
+    title: "Focus Grid",
+    url: "https://poornima20.github.io/PocketPlanner-DailyPlanner-FocusGrid/",
+    previewImage: "./Icons/focusgrid.png"
   }
 };
 
