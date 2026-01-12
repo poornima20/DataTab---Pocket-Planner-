@@ -528,8 +528,13 @@ body.plain {
 .page-preview.image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* no overflow ever */
+
+  object-fit: cover;          /* keep full page visible */
+  object-position: top;  /* 🔥 start from top */
+
+  background: #f4f5f7;
 }
+
 
 
 

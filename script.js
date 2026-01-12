@@ -38,6 +38,11 @@ const PAGE_LIBRARY = {
     title: "Focus Grid",
     url: "https://poornima20.github.io/PocketPlanner-DailyPlanner-FocusGrid/",
     previewImage: "./Icons/focusgrid.png"
+  },
+  tasklog: {
+    title: "Task Log",
+    url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-TaskLog/",
+    previewImage: "./Icons/tasklog.png"
   }
 };
 
@@ -45,6 +50,8 @@ const PAGE_LIBRARY = {
 
 const CATEGORY_PAGES = {
   daily: [ "focusgrid", "datatabPlanner", "Habbit" ],
+
+  monthly: [ "tasklog" ],
 
   weekly: ["calendarTab" ],
 
