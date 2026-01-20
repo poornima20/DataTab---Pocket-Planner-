@@ -43,6 +43,11 @@ const PAGE_LIBRARY = {
     title: "Task Log",
     url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-TaskLog/",
     previewImage: "./Icons/tasklog.png"
+  },
+  projecttimeline: {
+    title: "Project Timeline",
+    url: "https://poornima20.github.io/PocketPlanner-Tracker-ProjectTimeline/",
+    previewImage: "./Icons/projecttimeline.png"
   }
 };
 
@@ -57,7 +62,9 @@ const CATEGORY_PAGES = {
 
   goals: ["jobTab", "projectVisualizer"  ],
 
-  notes: [  "notesTab"  ]
+  notes: [  "notesTab"  ],
+
+  tracker: [ "projecttimeline" ]
 };
 
 
