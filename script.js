@@ -14,11 +14,6 @@ const PAGE_LIBRARY = {
     url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
     previewImage: "./previews/notestab.png"
   },
-  calendarTab: {
-    title: "CalendarTab",
-    url: "https://poornima20.github.io/CalenderTab-DataTab/",
-    previewImage: "./previews/calendar.png"
-  },
   jobTab: {
     title: "JobTab",
     url: "https://poornima20.github.io/JobTab-DataTab/",
@@ -48,6 +43,11 @@ const PAGE_LIBRARY = {
     title: "Project Timeline",
     url: "https://poornima20.github.io/PocketPlanner-Tracker-ProjectTimeline/",
     previewImage: "./Icons/projecttimeline.png"
+  },
+  weeklog: {
+    title: "Week Log",
+    url: "https://poornima20.github.io/PocketPlanner-WeeklyPlaner-WeekLog/",
+    previewImage: "./Icons/weeklog.png"
   }
 };
 
@@ -58,7 +58,7 @@ const CATEGORY_PAGES = {
 
   monthly: [ "tasklog" ],
 
-  weekly: ["calendarTab" ],
+  weekly: ["weeklog" ],
 
   goals: ["jobTab", "projectVisualizer"  ],
 
