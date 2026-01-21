@@ -579,3 +579,8 @@ function setupPageCounterObserver(visiblePages) {
 }
 
 
+const openPlannerMain = document.getElementById("openPlannerMain");
+
+if (openPlannerMain) {
+  openPlannerMain.addEventListener("click", openProfile);
+}
