@@ -68,10 +68,6 @@ const CATEGORY_PAGES = {
 };
 
 
-document.getElementById("openPlannerMain")
-  .addEventListener("click", openProfile);
-
-
 function goHome() {
   modal.classList.add("hidden");
   profilePage.classList.remove("active", "pages-open");
@@ -277,7 +273,8 @@ function savePage(pageKey) {
   pages.push({
     id: crypto.randomUUID(),
     title: page.title,
-    url: page.url
+    url: page.url,
+    hidden: false 
   });
 
   localStorage.setItem("plannerPages", JSON.stringify(pages));
@@ -288,30 +285,28 @@ function savePage(pageKey) {
 
 function renderPlannerPages() {
   const container = document.getElementById("plannerCanvas");
-  const pages = getSavedPages();
+  const pages = getSavedPages().filter(p => !p.hidden);
 
   container.innerHTML = "";
 
   pages.forEach((page, index) => {
     const wrapper = document.createElement("div");
     wrapper.className = "planner-page-wrapper";
-    wrapper.draggable = true;
     wrapper.dataset.index = index;
 
     const iframe = document.createElement("iframe");
     iframe.src = page.url;
     iframe.className = "planner-frame";
     iframe.loading = "lazy";
-    iframe.referrerPolicy = "no-referrer";
-    iframe.tabIndex = -1; 
+    iframe.tabIndex = -1;
 
     wrapper.appendChild(iframe);
     container.appendChild(wrapper);
   });
 
-  setupPageCounterObserver(); 
-
+  setupPageCounterObserver(pages);
 }
+
 
 
 const plannerCanvas = document.getElementById("plannerCanvas");
@@ -378,12 +373,22 @@ card.innerHTML = `
 <div class="mini-actions">
   <button class="drag-handle" data-action="move"><i data-lucide="grip-vertical"></i></button>
   <button data-action="edit"><i data-lucide="pencil"></i></button>
-  <button data-action="duplicate"><i data-lucide="copy"></i></button>
+   <button data-action="toggle-visibility"><i data-lucide="eye-off"></i></button>
   <button data-action="delete"><i data-lucide="trash-2"></i></button>
   <button data-action="refresh"><i data-lucide="refresh-cw"></i></button>
 </div>
 
 `;
+
+const eyeIcon = card.querySelector('[data-action="toggle-visibility"] i');
+
+if (page.hidden) {
+  eyeIcon.setAttribute("data-lucide", "eye");
+  card.style.opacity = "0.5";
+} else {
+  eyeIcon.setAttribute("data-lucide", "eye-off");
+  card.style.opacity = "1";
+}
 
 
 
@@ -415,13 +420,10 @@ document.querySelector(".pages-list").addEventListener("click", e => {
     pages.splice(index, 1);
   }
 
-  if (action === "duplicate") {
-  const original = pages[index];
-  pages.splice(index + 1, 0, {
-    ...original,
-    id: crypto.randomUUID()
-  });
+if (action === "toggle-visibility") {
+  pages[index].hidden = !pages[index].hidden;
 }
+
 
 
   if (action === "refresh") {
@@ -547,38 +549,33 @@ function updatePageCounter() {
 
 let pageObserver = null;
 
-function setupPageCounterObserver() {
+function setupPageCounterObserver(visiblePages) {
   if (pageObserver) pageObserver.disconnect();
 
   const wrappers = document.querySelectorAll(".planner-page-wrapper");
-  const pages = getSavedPages();
   const total = wrappers.length;
 
   if (!total) {
-    pageCounter.textContent = "";
+    pageCounter.textContent = "0 / 0";
     return;
   }
 
-  // Initial value
-  pageCounter.textContent = `1 / ${total} · ${pages[0].customTitle || pages[0].title}`;
+  pageCounter.textContent =
+    `1 / ${total} · ${visiblePages[0].customTitle || visiblePages[0].title}`;
 
-  pageObserver = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = Number(entry.target.dataset.index);
-          const page = pages[index];
+  pageObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = Number(entry.target.dataset.index);
+        const page = visiblePages[index];
 
-          const name = page.customTitle || page.title;
-          pageCounter.textContent = `${index + 1} / ${total} · ${name}`;
-        }
-      });
-    },
-    {
-      threshold: 0.6
-    }
-  );
+        pageCounter.textContent =
+          `${index + 1} / ${total} · ${page.customTitle || page.title}`;
+      }
+    });
+  }, { threshold: 0.6 });
 
   wrappers.forEach(w => pageObserver.observe(w));
 }
+
 
