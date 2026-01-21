@@ -156,17 +156,31 @@ body.plain {
 
 /* Planner name (personal, secondary) */
 .planner-name-wrapper {
-  margin-top: 10px;
-  text-align: center;
+  margin-top: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
 }
 
+
 .planner-name {
-  font-family: Inter, sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: #444;
-  cursor: pointer;
+  color: #111;
+  cursor: text;
+
+  padding-bottom: 2px;
+  border-bottom: 1px dashed rgba(0,0,0,0.35);
 }
+
+.planner-name:hover {
+  border-bottom-color: rgba(0,0,0,0.7);
+}
+
 
 /* Editable input */
 .planner-name-input {
@@ -987,4 +1001,52 @@ body.plain {
   font-size: 13px;
   font-weight: 500;
   opacity: 0.75;
+}
+
+.planner-section {
+  margin-bottom: 72px;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 48px 0 32px;
+  color: #111;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px dotted rgba(0,0,0,0.35);
+}
+
+.section-divider span {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.open-planner-btn {
+  margin-top: 16px;
+  padding: 10px 22px;
+
+  background: #111;
+  color: #fff;
+
+  border: none;
+  border-radius: 999px;
+
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.open-planner-btn:hover {
+  opacity: 0.9;
 }

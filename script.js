@@ -68,6 +68,10 @@ const CATEGORY_PAGES = {
 };
 
 
+document.getElementById("openPlannerMain")
+  .addEventListener("click", openProfile);
+
+
 function goHome() {
   modal.classList.add("hidden");
   profilePage.classList.remove("active", "pages-open");

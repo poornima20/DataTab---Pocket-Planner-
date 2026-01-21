@@ -54,6 +54,11 @@
       placeholder="Name your planner…"
       maxlength="40"
     />
+
+    <button class="open-planner-btn" id="openPlannerMain">
+  Open your Planner
+</button>
+
   </div>
 </header>
 
@@ -64,6 +69,12 @@
   <p class="subtitle">Your quiet space to plan, think, and manage time.</p>
 
   <!-- PLANNER CATEGORIES -->
+  <!-- DATED PLANNERS -->
+<div class="planner-section">
+  <div class="section-divider">
+    <span>Dated Planner Pages</span>
+  </div>
+
   <div class="planner-categories">
     <button class="planner-card" data-planner="daily">
       <i data-lucide="sun"></i>
@@ -84,7 +95,16 @@
       <i data-lucide="clipboard"></i>
       <span>Tracker</span>
     </button>
+  </div>
+</div>
 
+<!-- UNDATED PLANNERS -->
+<div class="planner-section">
+  <div class="section-divider">
+    <span>Undated Planner Pages</span>
+  </div>
+
+  <div class="planner-categories">
     <button class="planner-card" data-planner="goals">
       <i data-lucide="target"></i>
       <span>Goals</span>
@@ -95,6 +115,8 @@
       <span>Notes</span>
     </button>
   </div>
+</div>
+
 </main>
 
 <!-- FULL SCREEN PLANNER MODAL -->
