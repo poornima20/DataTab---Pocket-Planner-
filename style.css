@@ -14,6 +14,17 @@ body {
   transition: background-image 0.35s ease;
 }
 
+/* Hide scrollbars but keep scroll functionality */
+* {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge legacy */
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;                /* Chrome / Safari */
+}
 
 
 /* PAPER BACKGROUNDS — CENTERED */
