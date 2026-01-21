@@ -48,6 +48,11 @@ const PAGE_LIBRARY = {
     title: "Week Log",
     url: "https://poornima20.github.io/PocketPlanner-WeeklyPlaner-WeekLog/",
     previewImage: "./Icons/weeklog.png"
+  },
+  timeprogress: {
+    title: "Time Progress",
+    url: "https://poornima20.github.io/PocketPlanner-YearlyPlanner-TimeProgress/",
+    previewImage: "./Icons/timeprogress.png"
   }
 };
 
@@ -64,7 +69,9 @@ const CATEGORY_PAGES = {
 
   notes: [  "notesTab"  ],
 
-  tracker: [ "projecttimeline" ]
+  tracker: [ "projecttimeline" ],
+
+  yearly: [ "timeprogress" ]
 };
 
 
