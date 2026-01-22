@@ -591,3 +591,7 @@ const openPlannerMain = document.getElementById("openPlannerMain");
 if (openPlannerMain) {
   openPlannerMain.addEventListener("click", openProfile);
 }
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js");
+}
