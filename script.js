@@ -53,19 +53,24 @@ const PAGE_LIBRARY = {
     title: "Time Progress",
     url: "https://poornima20.github.io/PocketPlanner-YearlyPlanner-TimeProgress/",
     previewImage: "./Icons/timeprogress.png"
+  },
+  monthlygrid: {
+    title: "Monthly Grid",
+    url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-MonthlyGrid/",
+    previewImage: "./Icons/monthlygrid.png"
   }
 };
 
 
 
 const CATEGORY_PAGES = {
-  daily: [ "focusgrid", "datatabPlanner", "Habbit" ],
+  daily: [ "focusgrid"],
 
-  monthly: [ "tasklog" ],
+  monthly: [ "tasklog" , "monthlygrid" ],
 
   weekly: ["weeklog" ],
 
-  goals: ["jobTab", "projectVisualizer"  ],
+  goals: [ ],
 
   notes: [  "notesTab"  ],
 
