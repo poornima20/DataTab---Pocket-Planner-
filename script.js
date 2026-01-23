@@ -58,6 +58,11 @@ const PAGE_LIBRARY = {
     title: "Monthly Grid",
     url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-MonthlyGrid/",
     previewImage: "./Icons/monthlygrid.png"
+  },
+  studylog: {
+    title: "Study Log",
+    url: "https://poornima20.github.io/PocketPlanner-Tracker-StudyLog/",
+    previewImage: "./Icons/studylog.png"
   }
 };
 
@@ -74,7 +79,7 @@ const CATEGORY_PAGES = {
 
   notes: [  "notesTab"  ],
 
-  tracker: [ "projecttimeline" ],
+  tracker: [ "projecttimeline" , "studylog" ],
 
   yearly: [ "timeprogress" ]
 };
