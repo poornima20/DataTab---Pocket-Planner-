@@ -1061,3 +1061,28 @@ body.plain {
 .open-planner-btn:hover {
   opacity: 0.9;
 }
+
+.modal-body {
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 5;
+}
+
+.arrow.prev { left: 12px; }
+.arrow.next { right: 12px; }
+
+@media (max-width: 768px) {
+  .arrow { display: none; } /* swipe only on mobile */
+}

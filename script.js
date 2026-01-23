@@ -600,3 +600,18 @@ if (openPlannerMain) {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js");
 }
+
+
+const carousel = document.querySelector(".page-carousel");
+const prevArrow = document.getElementById("carouselPrev");
+const nextArrow = document.getElementById("carouselNext");
+
+function swipeLikeScroll(direction) {
+  carousel.scrollBy({
+    left: direction * carousel.clientWidth,
+    behavior: "smooth"
+  });
+}
+
+prevArrow.addEventListener("click", () => swipeLikeScroll(-1));
+nextArrow.addEventListener("click", () => swipeLikeScroll(1));
