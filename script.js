@@ -4,31 +4,6 @@ const thumb = document.querySelector(".thumb");
 const DEFAULT_PLANNER_NAME = "Your Planner Name";
 
 const PAGE_LIBRARY = {
-  datatabPlanner: {
-    title: "DataTab Planner",
-    url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
-    previewImage: "./previews/datatab.png"
-  },
-  notesTab: {
-    title: "NotesTab",
-    url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
-    previewImage: "./previews/notestab.png"
-  },
-  jobTab: {
-    title: "JobTab",
-    url: "https://poornima20.github.io/JobTab-DataTab/",
-    previewImage: "./previews/jobtab.png"
-  },
-  projectVisualizer: {
-    title: "Project Visualizer",
-    url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
-    previewImage: "./previews/project.png"
-  },
-  Habbit: {
-    title: "Habit Tracker",
-    url: "https://poornima20.github.io/DataTab-ProjectVisualizer/",
-    previewImage: "./previews/habit.png"
-  },
   focusgrid: {
     title: "Focus Grid",
     url: "https://poornima20.github.io/PocketPlanner-DailyPlanner-FocusGrid/",
@@ -63,6 +38,11 @@ const PAGE_LIBRARY = {
     title: "Study Log",
     url: "https://poornima20.github.io/PocketPlanner-Tracker-StudyLog/",
     previewImage: "./Icons/studylog.png"
+  },
+  cornellnotes: {
+    title: "Cornell Notes",
+    url: "https://poornima20.github.io/PocketPlanner-Notes-Cornell-Notes//",
+    previewImage: "./Icons/cornellnotes.png"
   }
 };
 
@@ -77,7 +57,7 @@ const CATEGORY_PAGES = {
 
   goals: [ ],
 
-  notes: [  "notesTab"  ],
+  notes: [  "cornellnotes"  ],
 
   tracker: [ "projecttimeline" , "studylog" ],
 
