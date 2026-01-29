@@ -46,6 +46,8 @@ const PAGE_LIBRARY = {
   }
 };
 
+const DATED_CATEGORIES = ["daily", "weekly", "monthly", "yearly", "tracker"];
+const UNDATED_CATEGORIES = ["goals", "notes"];
 
 
 const CATEGORY_PAGES = {
@@ -600,3 +602,44 @@ function swipeLikeScroll(direction) {
 
 prevArrow.addEventListener("click", () => swipeLikeScroll(-1));
 nextArrow.addEventListener("click", () => swipeLikeScroll(1));
+
+function renderHomeGrids() {
+  const datedGrid = document.getElementById("datedGrid");
+  const undatedGrid = document.getElementById("undatedGrid");
+
+  datedGrid.innerHTML = "";
+  undatedGrid.innerHTML = "";
+
+  Object.entries(CATEGORY_PAGES).forEach(([category, pageKeys]) => {
+    pageKeys.forEach(pageKey => {
+      const page = PAGE_LIBRARY[pageKey];
+      if (!page) return;
+
+      const card = document.createElement("div");
+      card.className = "home-page-card";
+
+      card.innerHTML = `
+        <div class="home-preview">
+          <img src="${page.previewImage}" loading="lazy" />
+        </div>
+        <div class="home-title">${page.title}</div>
+      `;
+
+      // 🔑 clicking a card opens SAME modal
+      card.addEventListener("click", () => {
+        title.textContent = category.toUpperCase();
+        renderModalPages(category);
+        modal.classList.remove("hidden");
+        history.pushState({ open: true }, "");
+      });
+
+      if (DATED_CATEGORIES.includes(category)) {
+        datedGrid.appendChild(card);
+      } else if (UNDATED_CATEGORIES.includes(category)) {
+        undatedGrid.appendChild(card);
+      }
+    });
+  });
+}
+
+renderHomeGrids();
