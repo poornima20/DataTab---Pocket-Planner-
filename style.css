@@ -1182,3 +1182,47 @@ body.plain {
 @media (max-width: 768px) {
   .arrow { display: none; } /* swipe only on mobile */
 }
+
+
+/* HERO DEMO */
+
+.hero-demo{
+  display:flex;
+  justify-content:center;
+  margin: 0;
+}
+
+.tablet-frame{
+  width: 100%;     /* tablet shape */
+  background: transparent;
+  border: none;
+  padding: 0;
+
+}
+
+.tablet-frame img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  border: none;
+  background:white;
+}
+
+@media (max-width: 600px){
+
+  .hero-demo{
+    margin: 0;
+  }
+
+  .tablet-frame{
+    max-width: 100%;
+    border:none;
+    padding: 0;
+  }
+
+  .tablet-frame img{
+    border:none;
+    background: transparent;
+  }
+
+}
