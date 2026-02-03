@@ -43,6 +43,11 @@ const PAGE_LIBRARY = {
     title: "Cornell Notes",
     url: "https://poornima20.github.io/PocketPlanner-Notes-Cornell-Notes//",
     previewImage: "./Icons/cornellnotes.png"
+  },
+  spendlog: {
+    title: "Spend Log",
+    url: "https://poornima20.github.io/PocketPlanner-Tracker-SpendLog/",
+    previewImage: "./Icons/spendlog.png"
   }
 };
 
@@ -61,7 +66,7 @@ const CATEGORY_PAGES = {
 
   notes: [  "cornellnotes"  ],
 
-  tracker: [ "projecttimeline" , "studylog" ],
+  tracker: [ "projecttimeline" , "studylog", "spendlog" ],
 
   yearly: [ "timeprogress" ]
 };
