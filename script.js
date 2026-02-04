@@ -48,6 +48,11 @@ const PAGE_LIBRARY = {
     title: "Spend Log",
     url: "https://poornima20.github.io/PocketPlanner-Tracker-SpendLog/",
     previewImage: "./Icons/spendlog.png"
+  },
+  minuteplanner: {
+    title: "10-Minute Planner",
+    url: "https://poornima20.github.io/PocketPlanner-DailyPlanner-10MinutePlanner/",
+    previewImage: "./Icons/10minuteplanner.png"
   }
 };
 
@@ -56,7 +61,7 @@ const UNDATED_CATEGORIES = ["goals", "notes"];
 
 
 const CATEGORY_PAGES = {
-  daily: [ "focusgrid"],
+  daily: [ "focusgrid", "minuteplanner" ],
 
   monthly: [ "tasklog" , "monthlygrid" ],
 
