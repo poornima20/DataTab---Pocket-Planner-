@@ -19,6 +19,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="book.css" />
+
 </head>
 <body class="grid">
 
@@ -176,13 +178,19 @@
 </button>
 
 <!-- PROFILE PAGE -->
-<!-- PROFILE PAGE -->
 <div class="profile-page" id="profilePage">
 
   <!-- Header -->
   <div class="profile-header">
     <span class="profile-hint">Your Planner</span>
     <h2 id="profilePlannerName">Untitled Planner</h2>
+    <button class="open-planner-btn book-btn" id="openBookView">
+  <i data-lucide="book-open"></i>
+  <span class="btn-text">Open in Book view</span>
+</button>
+
+
+
   </div>
 
   <!-- Sticky Tray -->
@@ -225,7 +233,19 @@
 
 </div>
 
-  <script src="script.js"></script>
+<div id="bookView" class="book-view hidden">
+  <button class="book-close" id="closeBookView">← Back</button>
+
+  <div class="book" id="book">
+    <div class="left-base"></div>
+  </div>
+</div>
+
+
+
+  <script type="module" src="script.js"></script>
+
   <script>lucide.createIcons();</script>
+
 </body>  
 </html>

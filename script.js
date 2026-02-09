@@ -653,3 +653,20 @@ function renderHomeGrids() {
 }
 
 renderHomeGrids();
+
+import { initBookView } from "./book.js";
+
+const openBookBtn = document.getElementById("openBookView");
+const closeBookBtn = document.getElementById("closeBookView");
+const bookView = document.getElementById("bookView");
+
+openBookBtn?.addEventListener("click", () => {
+  bookView.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+  initBookView();
+});
+
+closeBookBtn?.addEventListener("click", () => {
+  bookView.classList.add("hidden");
+  document.body.style.overflow = "";
+});

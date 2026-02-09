@@ -1154,6 +1154,52 @@ body.plain {
   cursor: pointer;
 }
 
+.book-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 44px;
+  padding: 0 24px;
+
+  background: #111;
+  color: #fff;
+
+  border: none;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.book-btn i {
+  display: flex;
+  align-items: center;
+}
+
+.book-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.book-btn .btn-text {
+  display: flex;
+  align-items: center;   /* 🔑 text aligns to icon center */
+  line-height: 1;
+}
+
+
+
+.book-btn:hover {
+  opacity: 0.92;
+}
+
+.book-btn {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+
 .open-planner-btn:hover {
   opacity: 0.9;
 }
@@ -1225,4 +1271,57 @@ body.plain {
     background: transparent;
   }
 
+}
+
+.book-overlay {
+  position: fixed;
+  inset: 0;
+  background: #e9e7e1;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-overlay.hidden {
+  display: none;
+}
+
+/* close button */
+.book-close {
+  background: none;
+  border: none;
+  font-size: 15px;
+  padding: 16px 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* iframe */
+.book-frame {
+  flex: 1;
+  border: none;
+}
+
+.book-view {
+  position: fixed;
+  inset: 0;
+  background: #e9e7e1;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.book-view.hidden {
+  display: none;
+}
+
+.book-close {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 10000;
 }
