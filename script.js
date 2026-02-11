@@ -53,6 +53,11 @@ const PAGE_LIBRARY = {
     title: "10-Minute Planner",
     url: "https://poornima20.github.io/PocketPlanner-DailyPlanner-10MinutePlanner/",
     previewImage: "./Icons/10minuteplanner.png"
+  },
+  yearoverview: {
+    title: "Year Overview",
+    url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-YearOverview/",
+    previewImage: "./Icons/yearoverview.png"
   }
 };
 
@@ -73,7 +78,7 @@ const CATEGORY_PAGES = {
 
   tracker: [ "projecttimeline" , "studylog", "spendlog" ],
 
-  yearly: [ "timeprogress" ]
+  yearly: [ "timeprogress" , "yearoverview" ]
 };
 
 
