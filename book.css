@@ -167,6 +167,13 @@
   }
 }
 
+@media (max-width: 420px) {
+  .book {
+    transform: translateX(-40%) scale(0.7);
+  }
+}
+
+
 /* Zoom out iframe content in book view */
 .book .page iframe {
   width: 130%;
