@@ -425,37 +425,41 @@ body.plain {
    HOME PAGE DISCOVERY GRID
 ========================= */
 
+/* =========================
+   LANDING PLANNER CARDS
+========================= */
+
 .home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 22px;
-  margin-top: 36px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  row-gap: 80px;      /* 🔥 more vertical space */
+column-gap: 30px;   /* keep horizontal spacing normal */
+
+  margin-top: 40px;
 }
 
+/* Card */
 .home-page-card {
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,0.08);
-  padding: 12px;
-
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.2s ease;
 }
 
 .home-page-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+  transform: translateY(-6px);
 }
 
+/* Poster-style image */
 .home-preview {
-  height: 180px;
-  border-radius: 12px;
+  aspect-ratio: 3 / 4;          /* 🔥 portrait like game covers */
+  border-radius: 16px;
   overflow: hidden;
+
   background: #f4f5f7;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.08);
 }
 
 .home-preview img {
@@ -464,11 +468,27 @@ body.plain {
   object-fit: cover;
 }
 
+/* Title */
 .home-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .home-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+      row-gap: 50px;      /* 🔥 more vertical space */
+column-gap: 25px; 
+  }
+
+  .home-title {
+    font-size: 14px;
+  }
+}
+
+
 
 .planner-categories-wrap {
   overflow: visible;
@@ -1226,7 +1246,20 @@ body.plain {
 .arrow.next { right: 12px; }
 
 @media (max-width: 768px) {
-  .arrow { display: none; } /* swipe only on mobile */
+  .arrow {
+    display: block;       /* show arrows */
+    width: 38px;
+    height: 38px;
+  }
+
+  .arrow.prev { left: 6px; }
+  .arrow.next { right: 6px; }
+
+  .arrow {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(6px);
+}
+
 }
 
 

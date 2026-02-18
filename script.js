@@ -642,11 +642,26 @@ function renderHomeGrids() {
 
       // 🔑 clicking a card opens SAME modal
       card.addEventListener("click", () => {
-        title.textContent = category.toUpperCase();
-        renderModalPages(category);
-        modal.classList.remove("hidden");
-        history.pushState({ open: true }, "");
-      });
+      title.textContent = category.toUpperCase();
+
+      renderModalPages(category);
+
+      modal.classList.remove("hidden");
+      history.pushState({ open: true }, "");
+
+      // 🔥 Scroll to the exact clicked page
+      setTimeout(() => {
+        const targetCard = document.querySelector(
+          `.page-card[data-page="${pageKey}"]`
+        );
+
+        targetCard?.scrollIntoView({
+          behavior: "auto",
+          inline: "center"
+        });
+      }, 50);
+    });
+
 
       if (DATED_CATEGORIES.includes(category)) {
         datedGrid.appendChild(card);
