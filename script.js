@@ -609,11 +609,18 @@ const prevArrow = document.getElementById("carouselPrev");
 const nextArrow = document.getElementById("carouselNext");
 
 function swipeLikeScroll(direction) {
+  const card = carousel.querySelector(".page-card");
+  if (!card) return;
+
+  const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+  const cardWidth = card.offsetWidth + gap;
+
   carousel.scrollBy({
-    left: direction * carousel.clientWidth,
+    left: direction * cardWidth,
     behavior: "smooth"
   });
 }
+
 
 prevArrow.addEventListener("click", () => swipeLikeScroll(-1));
 nextArrow.addEventListener("click", () => swipeLikeScroll(1));
