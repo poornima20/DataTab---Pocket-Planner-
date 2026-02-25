@@ -58,6 +58,11 @@ const PAGE_LIBRARY = {
     title: "Year Overview",
     url: "https://poornima20.github.io/PocketPlanner-MonthlyPlanner-YearOverview/",
     previewImage: "./Icons/yearoverview.png"
+  },
+  waterlog: {
+    title: "Water Log",
+    url: "https://poornima20.github.io/PocketPlanner-Tracker-WaterLog/",
+    previewImage: "./Icons/waterlog.png"
   }
 };
 
@@ -76,7 +81,7 @@ const CATEGORY_PAGES = {
 
   notes: [  "cornellnotes"  ],
 
-  tracker: [ "projecttimeline" , "studylog", "spendlog" ],
+  tracker: [ "projecttimeline" , "studylog", "spendlog", "waterlog" ],
 
   yearly: [ "timeprogress" , "yearoverview" ]
 };
