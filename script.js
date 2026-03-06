@@ -94,7 +94,6 @@ function goHome() {
 }
 
 
-
 buttons.forEach((btn, index) => {
   btn.addEventListener("click", () => {
     document.body.classList.remove(...modes);
@@ -702,3 +701,23 @@ closeBookBtn?.addEventListener("click", () => {
   bookView.classList.add("hidden");
   document.body.style.overflow = "";
 });
+
+// ✅ ONLY section1 → section2 (strict)
+
+let moved = false;
+
+const section1 = document.getElementById("section1");
+const section2 = document.getElementById("section2");
+
+section1.addEventListener("scroll", () => {
+  if (!moved) {
+    moved = true;
+
+    section2.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+});
+
+
