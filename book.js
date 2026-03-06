@@ -2,19 +2,28 @@ export function initBookView() {
   const book = document.getElementById("book");
   if (!book) return;
 
-  // 🔄 Always reset (order may change)
+  const DEFAULT_PLANNER_NAME = "Pocket Planner";
+
+  let personalPlannerName =
+    localStorage.getItem("personalPlannerName") || DEFAULT_PLANNER_NAME;
+
+    if(personalPlannerName === "Your Planner Name"){
+      personalPlannerName = "User";
+    }
+
+  // 🔄 Always reset
   book.innerHTML = `<div class="left-base"></div>`;
 
-  // 🔹 Read SAME pages as Profile
   const pages = (JSON.parse(localStorage.getItem("plannerPages")) || [])
-    .filter(p => !p.hidden); // respect visibility
+    .filter(p => !p.hidden);
 
   if (!pages.length) return;
 
   const COVER_DATA = {
-    title: "Pocket Planner",
+    title: `${personalPlannerName}'s Planner`,
     subtitle: "Tap to open your book"
   };
+
 
   /* ---------------- COVER ---------------- */
   {
@@ -26,7 +35,7 @@ export function initBookView() {
     front.className = "page front cover-front";
     front.innerHTML = `
       <div class="cover-content">
-        <h1>${COVER_DATA.title}</h1>
+        <h1 style="font-size: 1.5rem;">${COVER_DATA.title}</h1>
         <p>${COVER_DATA.subtitle}</p>
       </div>
     `;
