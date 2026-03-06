@@ -1438,3 +1438,37 @@ column-gap: 25px;
   cursor: pointer;
   z-index: 10000;
 }
+
+.add-page-placeholder {
+  width: min(92%, 700px);
+  height: 420px;
+  margin: 40px auto;
+
+  border: 2px dashed #d6d6d6;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+  background: rgba(255,255,255,0.55);
+}
+
+.add-page-placeholder:hover {
+  border-color: #111;
+  transform: scale(1.02);
+}
+
+.add-page-inner {
+  text-align: center;
+  font-family: Inter;
+  color: #777;
+}
+
+.add-page-inner svg {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 10px;
+}

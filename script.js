@@ -307,6 +307,13 @@ function renderPlannerPages() {
 
   container.innerHTML = "";
 
+const pagesno = JSON.parse(localStorage.getItem("plannerPages")) || [];
+
+if (!pagesno.length) {
+  renderAddPagePlaceholder();  // 👈 ONLY here
+  return;
+}
+
   pages.forEach((page, index) => {
     const wrapper = document.createElement("div");
     wrapper.className = "planner-page-wrapper";
@@ -721,3 +728,32 @@ section1.addEventListener("scroll", () => {
 });
 
 
+function renderAddPagePlaceholder() {
+  const canvas = document.getElementById("plannerCanvas");
+  if (!canvas) return;
+
+  canvas.innerHTML = `
+    <div class="add-page-placeholder" id="addPagePlaceholder">
+      <div class="add-page-inner">
+        <i data-lucide="plus"></i>
+        <p>Add pages to your planner</p>
+      </div>
+    </div>
+  `;
+
+  lucide.createIcons();
+
+  document
+    .getElementById("addPagePlaceholder")
+    .addEventListener("click", goToLandingFromProfile);
+}
+
+function goToLandingFromProfile() {
+  // close profile
+  document.getElementById("profilePage").classList.remove("active");
+
+  // scroll to landing
+  document
+    .getElementById("landingSection")
+    .scrollIntoView({ behavior: "smooth" });
+}
