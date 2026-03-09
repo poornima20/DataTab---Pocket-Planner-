@@ -178,13 +178,13 @@ body.plain {
 .planner-gif {
   display: flex;
   justify-content: center;
-  margin: 10px 0 14px;
 }
 
 .planner-gif img {
   width: 45%;
   height: auto;
   display: block;
+  max-width: none;
 }
 
 .planner-png {
@@ -200,13 +200,30 @@ body.plain {
 }
 
 /* ✅ MOBILE — slightly bigger */
-@media (max-width: 600px) {
-  .planner-gif img {
-    width: 65%;
+@media (max-width: 768px) {
+
+  .planner-name-wrapper {
+    gap: 62px;   /* control spacing ONLY here */
   }
-  .planner-png img {
-    width: 90%;
-  } 
+
+  .planner-gif {
+    margin: 0;   /* remove desktop spacing */
+  }
+
+  .planner-gif img {
+    width: 72%;  /* free scaling */
+  }
+
+  .planner-name-input {
+    width: 80%;
+    padding: 6px;
+  }
+
+  .open-planner-btn {
+    margin-top: 8px;
+    padding: 12px 24px;
+  }
+
 }
 
 /* ICON BUTTONS */
