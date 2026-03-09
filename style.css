@@ -143,7 +143,9 @@ body.plain {
 /* ✅ MOBILE — center header perfectly */
 @media (max-width: 768px) {
 
-
+   .planner-name{
+    margin-top: 42px; /* reduce gap on mobile */
+  }
 
   .top {
     margin-top: 24px;
