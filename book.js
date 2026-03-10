@@ -5,7 +5,7 @@ export function initBookView() {
   const DEFAULT_PLANNER_NAME = "Pocket Planner";
 
   let personalPlannerName =
-    localStorage.getItem("personalPlannerName") || DEFAULT_PLANNER_NAME;
+    localStorage.getItem("fullmoon.pocketplanner.name") || DEFAULT_PLANNER_NAME;
 
     if(personalPlannerName === "Your Planner Name"){
       personalPlannerName = "User";
@@ -14,7 +14,7 @@ export function initBookView() {
   // 🔄 Always reset
   book.innerHTML = `<div class="left-base"></div>`;
 
-  const pages = (JSON.parse(localStorage.getItem("plannerPages")) || [])
+  const pages = (JSON.parse(localStorage.getItem("fullmoon.pocketplanner.pages")) || [])
     .filter(p => !p.hidden);
 
   if (!pages.length) return;

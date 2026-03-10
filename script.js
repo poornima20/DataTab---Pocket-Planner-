@@ -188,8 +188,8 @@ closeModal.addEventListener("click", () => {
 const plannerNameDisplay = document.getElementById("plannerNameDisplay");
 const plannerNameInput = document.getElementById("plannerNameInput");
 
-// Load saved planner name
-const savedPlannerName = localStorage.getItem("personalPlannerName");
+// Load saved planner name - fullmoon.pocketplanner
+const savedPlannerName = localStorage.getItem("fullmoon.pocketplanner.name");
 if (savedPlannerName) {
   plannerNameDisplay.textContent = savedPlannerName;
 }
@@ -208,11 +208,11 @@ function savePlannerName() {
 
   if (!value) {
     // Reset to default
-    localStorage.removeItem("personalPlannerName");
+    localStorage.removeItem("fullmoon.pocketplanner.name");
     plannerNameDisplay.textContent = DEFAULT_PLANNER_NAME;
     profilePlannerName.textContent = DEFAULT_PLANNER_NAME;
   } else {
-    localStorage.setItem("personalPlannerName", value);
+    localStorage.setItem("fullmoon.pocketplanner.name", value);
     plannerNameDisplay.textContent = value;
     profilePlannerName.textContent = value;
   }
@@ -272,7 +272,7 @@ profilePage.addEventListener("touchend", (e) => {
 
 
 function getSavedPages() {
-  return JSON.parse(localStorage.getItem("plannerPages")) || [];
+  return JSON.parse(localStorage.getItem("fullmoon.pocketplanner.pages")) || [];
 }
 function isPageAlreadyAdded(pageKey) {
   const pages = getSavedPages();
@@ -295,7 +295,7 @@ function savePage(pageKey) {
     hidden: false 
   });
 
-  localStorage.setItem("plannerPages", JSON.stringify(pages));
+  localStorage.setItem("fullmoon.pocketplanner.pages", JSON.stringify(pages));
 }
 
 
@@ -307,7 +307,7 @@ function renderPlannerPages() {
 
   container.innerHTML = "";
 
-const pagesno = JSON.parse(localStorage.getItem("plannerPages")) || [];
+const pagesno = JSON.parse(localStorage.getItem("fullmoon.pocketplanner.pages")) || [];
 
 if (!pagesno.length) {
   renderAddPagePlaceholder();  // 👈 ONLY here
@@ -457,7 +457,7 @@ if (action === "toggle-visibility") {
   }
 
 
-  localStorage.setItem("plannerPages", JSON.stringify(pages));
+  localStorage.setItem("fullmoon.pocketplanner.pages", JSON.stringify(pages));
   renderPagesList();
   renderPlannerPages();
 });
@@ -487,7 +487,7 @@ function startRename(card, index) {
     if (value) page.customTitle = value;
     else delete page.customTitle;
 
-    localStorage.setItem("plannerPages", JSON.stringify(pages));
+    localStorage.setItem("fullmoon.pocketplanner.pages", JSON.stringify(pages));
     renderPagesList();
     renderPlannerPages();
   }
@@ -546,7 +546,7 @@ document.querySelector(".pages-list").addEventListener("drop", e => {
   const [moved] = pages.splice(dragIndex, 1);
   pages.splice(to, 0, moved);
 
-  localStorage.setItem("plannerPages", JSON.stringify(pages));
+  localStorage.setItem("fullmoon.pocketplanner.pages", JSON.stringify(pages));
   dragIndex = null;
 
   renderPagesList();
