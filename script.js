@@ -63,11 +63,17 @@ const PAGE_LIBRARY = {
     title: "Water Log",
     url: "https://poornima20.github.io/PocketPlanner-Tracker-WaterLog/",
     previewImage: "./Icons/waterlog.png"
+  },
+  arirang: {
+    title: "Arirang",
+    url: "https://poornima20.github.io/PocketPlanner-Music-Arirang/",
+    previewImage: "./Icons/arirang.png"
   }
+  
 };
 
 const DATED_CATEGORIES = ["daily", "weekly", "monthly", "yearly", "tracker"];
-const UNDATED_CATEGORIES = ["goals", "notes"];
+const UNDATED_CATEGORIES = ["goals", "notes","music"];
 
 
 const CATEGORY_PAGES = {
@@ -83,7 +89,9 @@ const CATEGORY_PAGES = {
 
   tracker: [ "projecttimeline" , "studylog", "spendlog", "waterlog" ],
 
-  yearly: [ "timeprogress" , "yearoverview" ]
+  yearly: [ "timeprogress" , "yearoverview" ],
+
+  music: [ "arirang" ]
 };
 
 
