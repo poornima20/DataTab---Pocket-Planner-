@@ -68,12 +68,17 @@ const PAGE_LIBRARY = {
     title: "Arirang",
     url: "https://poornima20.github.io/PocketPlanner-Music-Arirang/",
     previewImage: "./Icons/arirang.png"
+  },
+  bookshelf: {
+    title: "Bookshelf",
+    url: "https://poornima20.github.io/PocketPlanner-Entertainment-Bookshelf/",
+    previewImage: "./Icons/bookshelf.png"
   }
   
 };
 
 const DATED_CATEGORIES = ["daily", "weekly", "monthly", "yearly", "tracker"];
-const UNDATED_CATEGORIES = ["goals", "notes","music"];
+const UNDATED_CATEGORIES = ["goals", "notes","music", "entertainment"];
 
 
 const CATEGORY_PAGES = {
@@ -91,7 +96,9 @@ const CATEGORY_PAGES = {
 
   yearly: [ "timeprogress" , "yearoverview" ],
 
-  music: [ "arirang" ]
+  music: [ "arirang" ],
+
+  entertainment: [ "bookshelf" ]
 };
 
 
