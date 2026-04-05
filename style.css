@@ -1491,3 +1491,71 @@ column-gap: 25px;
   height: 34px;
   margin-bottom: 10px;
 }
+
+.backup-section {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.backup-title {
+  font-family: "Fraunces", serif;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.backup-subtitle {
+  font-family: Inter, sans-serif;
+  color: #555;
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+
+.backup-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.backup-card {
+  background: #f8f6f2;
+  border-radius: 14px;
+  padding: 20px 24px;
+  width: 140px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.backup-card i {
+  width: 28px;
+  height: 28px;
+}
+
+.backup-card button {
+  margin-top: 6px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.backup-center i {
+  width: 42px;
+  height: 42px;
+  opacity: 0.7;
+}
+
+.backup-footer {
+  font-size: 14px;
+  color: #666;
+  max-width: 520px;
+  margin: 20px auto;
+}

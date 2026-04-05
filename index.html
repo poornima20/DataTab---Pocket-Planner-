@@ -93,9 +93,43 @@
         </div>
       </div>
 
-      <div class="planner-png">
-        <img src="Icons\explore title tbg.png" alt="Explore Planner Pages" />
-        </div>
+      <div class="backup-section">
+
+  <h2 class="backup-title">Backup & Restore</h2>
+
+  <p class="backup-subtitle">
+    Download a backup file to keep your planner data safe, and restore it anytime.
+  </p>
+
+  <div class="backup-visual">
+
+    <!-- Backup -->
+    <div class="backup-card">
+      <i data-lucide="download"></i>
+      <span>Backup</span>
+      <button id="backupBtn">Download</button>
+    </div>
+
+    <!-- Center Icon -->
+    <div class="backup-center">
+      <i data-lucide="folder-sync"></i>
+    </div>
+
+    <!-- Restore -->
+    <div class="backup-card">
+      <i data-lucide="upload"></i>
+      <span>Restore</span>
+      <button id="restoreBtn">Upload</button>
+      <input type="file" id="fileInput" hidden />
+    </div>
+
+  </div>
+
+  <p class="backup-footer">
+    Download a backup of your data, or restore a backup file to keep your planner up to date.
+  </p>
+
+</div>
   </section>
 
  <main class="landing" id="landingSection">

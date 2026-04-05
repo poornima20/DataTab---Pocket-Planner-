@@ -772,3 +772,79 @@ function goToLandingFromProfile() {
     .getElementById("landingSection")
     .scrollIntoView({ behavior: "smooth" });
 }
+
+const backupBtn = document.getElementById("backupBtn");
+const restoreBtn = document.getElementById("restoreBtn");
+const fileInput = document.getElementById("fileInput");
+
+// BACKUP
+backupBtn.addEventListener("click", () => {
+  const prefix = "fullmoon.pocketplanner.";
+  const backupData = {};
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    if (key.startsWith(prefix)) {
+      backupData[key] = localStorage.getItem(key);
+    }
+  }
+
+  if (Object.keys(backupData).length === 0) {
+    alert("No planner data to backup!");
+    return;
+  }
+
+  const blob = new Blob([JSON.stringify(backupData)], {
+    type: "application/json"
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "pocket-planner-backup.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  const count = Object.keys(backupData).length;
+  alert(`${count} items backed up successfully!`);
+});
+// RESTORE
+restoreBtn.addEventListener("click", () => {
+  fileInput.click();
+});
+
+
+
+fileInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (event) {
+    if (!confirm("This will overwrite your current planner data. Continue?")) {
+      return;
+    }
+    try {
+      const data = JSON.parse(event.target.result);
+      const prefix = "fullmoon.pocketplanner.";
+
+      Object.keys(data).forEach(key => {
+        if (key.startsWith(prefix)) {
+          localStorage.setItem(key, data[key]);
+        }
+      });
+
+      alert("Planner restored successfully!");
+      location.reload();
+
+    } catch {
+      alert("Invalid backup file!");
+    }
+  };
+
+  reader.readAsText(file);
+});
