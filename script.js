@@ -76,7 +76,7 @@ const PAGE_LIBRARY = {
   },
   weeklyspread: {
     title: "Weekly Spread",
-    url: "https://poornima20.github.io/PocketPlanner-WeeklyPlaner-WeeklySpread/",
+    url: "https://poornima20.github.io/PocketPlanner-WeeklyPlanner-WeeklySpread/",
     previewImage: "./Icons/weeklyspread.png"
   }
   
