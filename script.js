@@ -73,6 +73,11 @@ const PAGE_LIBRARY = {
     title: "Bookshelf",
     url: "https://poornima20.github.io/PocketPlanner-Entertainment-Bookshelf/",
     previewImage: "./Icons/bookshelf.png"
+  },
+  weeklyspread: {
+    title: "Weekly Spread",
+    url: "https://poornima20.github.io/PocketPlanner-WeeklyPlaner-WeeklySpread/",
+    previewImage: "./Icons/weeklyspread.png"
   }
   
 };
@@ -86,7 +91,7 @@ const CATEGORY_PAGES = {
 
   monthly: [ "tasklog" , "monthlygrid" ],
 
-  weekly: ["weeklog" ],
+  weekly: ["weeklog" , "weeklyspread" ],
 
   goals: [ ],
 
